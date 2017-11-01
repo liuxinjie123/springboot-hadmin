@@ -17,114 +17,89 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- *@deprecated  文章分类管理
- *@author 贤云
- *
+ * 文章分类管理
  **/
 @Controller
 @RequestMapping("/admin/article/sort")
 public class ArticleSortController extends BaseController {
-	@Autowired
-	private IArticleSortService articleSortService;
-	/**
-	 * @deprecated 初始化访问页面
-	 * @author 贤云
-	 * @qq 799078779
-	 * @return
-	 */
-	@RequestMapping(value = { "/", "/index" })
-	public String index() {
-		return "admin/article/sort/index";
-	}
+    @Autowired
+    private IArticleSortService articleSortService;
 
-	/**
-	 *@deprecated  获取json数据集
-	 * @author 贤云
-	 * @qq 799078779
-	 * @return
-	 */
-	@RequestMapping(value = { "/list" })
-	@ResponseBody
-	public Page<ArticleSort> list() {
-		Page<ArticleSort> page = null;
-		try{
-			SimpleSpecificationBuilder<ArticleSort> builder = new SimpleSpecificationBuilder<ArticleSort>();
-			String searchText = request.getParameter("searchText");
-			if(StringUtils.isNotBlank(searchText)){
-				builder.add("nickName", Operator.likeAll.name(), searchText);
-			}
-			page=articleSortService.findAll(builder.generateSpecification(), getPageRequest());
+    /**
+     * 初始化访问页面
+     */
+    @RequestMapping(value = {"/", "/index"})
+    public String index() {
+        return "admin/article/sort/index";
+    }
 
-		}catch (java.lang.Exception e){
-			e.printStackTrace();
-		}
+    /**
+     * 获取json数据集
+     */
+    @RequestMapping(value = {"/list"})
+    @ResponseBody
+    public Page<ArticleSort> list() {
+        Page<ArticleSort> page = null;
+        try {
+            SimpleSpecificationBuilder<ArticleSort> builder = new SimpleSpecificationBuilder<ArticleSort>();
+            String searchText = request.getParameter("searchText");
+            if (StringUtils.isNotBlank(searchText)) {
+                builder.add("nickName", Operator.likeAll.name(), searchText);
+            }
+            page = articleSortService.findAll(builder.generateSpecification(), getPageRequest());
 
-		return page;
-	}
+        } catch (java.lang.Exception e) {
+            e.printStackTrace();
+        }
 
-	/**
-	 *@deprecated  新增页面初始化
-	 * @author 贤云
-	 * @qq 799078779
-	 * @param map
-	 * @return
-	 */
-	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public String add(ModelMap map) {
-		return "admin/article/sort/form";
-	}
+        return page;
+    }
 
-	/**
-	 *@deprecated  编辑页面初始化
-	 * @author 贤云
-	 * @qq 799078779
-	 * @param id
-	 * @param map
-	 * @return
-	 */
-	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-	public String edit(@PathVariable Integer id,ModelMap map) {
-		ArticleSort article = articleSortService.find(id);
-		map.put("articleSort", article);
-		return "admin/article/sort/form";
-	}
+    /**
+     * 新增页面初始化
+     */
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    public String add(ModelMap map) {
+        return "admin/article/sort/form";
+    }
 
-	/**
-	 *@deprecated  新增或者编辑文章保存
-	 * @author 贤云
-	 * @qq 799078779
-	 * @param map
-	 * @return
-	 */
-	@RequestMapping(value= {"/edit"} ,method = RequestMethod.POST)
-	@ResponseBody
-	public JsonResult edit(ArticleSort article, ModelMap map){
-		try {
-			articleSortService.saveOrUpdate(article);
-		} catch (Exception e) {
-			return JsonResult.failure(e.getMessage());
-		}
-		return JsonResult.success();
-	}
+    /**
+     * 编辑页面初始化
+     */
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public String edit(@PathVariable Integer id, ModelMap map) {
+        ArticleSort article = articleSortService.find(id);
+        map.put("articleSort", article);
+        return "admin/article/sort/form";
+    }
 
-	/**
-	 *@deprecated  根据文章id删除文章信息
-	 * @author 贤云
-	 * @qq 799078779
-	 * @param id
-	 * @param map
-	 * @return
-	 */
-	@RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
-	@ResponseBody
-	public JsonResult delete(@PathVariable Integer id,ModelMap map) {
-		try {
-			articleSortService.delete(id);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return JsonResult.failure(e.getMessage());
-		}
-		return JsonResult.success();
-	}
+    /**
+     * 新增或者编辑文章保存
+     */
+    @RequestMapping(value = {"/edit"}, method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult edit(ArticleSort article, ModelMap map) {
+        try {
+            articleSortService.saveOrUpdate(article);
+        } catch (Exception e) {
+            return JsonResult.failure(e.getMessage());
+        }
+        return JsonResult.success();
+    }
+
+    /**
+     * 根据文章id删除文章信息
+     */
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult delete(@PathVariable Integer id, ModelMap map) {
+        try {
+            articleSortService.delete(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return JsonResult.failure(e.getMessage());
+        }
+        return JsonResult.success();
+    }
 
 }

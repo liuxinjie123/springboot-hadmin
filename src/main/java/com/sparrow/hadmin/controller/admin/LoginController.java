@@ -21,11 +21,11 @@ public class LoginController extends BaseController {
 	}
 	@RequestMapping(value = { "/admin/login" }, method = RequestMethod.POST)
 	public String login(@RequestParam("username") String username,
-			@RequestParam("password") String password,ModelMap model
-			) {
+						@RequestParam("password") String password,
+						ModelMap model) {
 		try {
-			 Subject subject = SecurityUtils.getSubject();
-			 UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+			Subject subject = SecurityUtils.getSubject();
+			UsernamePasswordToken token = new UsernamePasswordToken(username, password);
 			subject.login(token);
 			return redirect("/admin/index");
 		} catch (AuthenticationException e) {

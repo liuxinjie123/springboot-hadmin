@@ -22,9 +22,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- *@deprecated  文章管理
- *@author 贤云
- *
+ * 文章管理
  **/
 @Controller
 @RequestMapping("/admin/article")
@@ -37,10 +35,7 @@ public class ArticleController extends BaseController {
 	@Autowired
 	private IArticleSortService articleSortService;
 	/**
-	 * @deprecated 初始化访问页面
-	 * @author 贤云
-	 * @qq 799078779
-	 * @return
+	 * 初始化访问页面
 	 */
 	@RequestMapping(value = { "/", "/index" })
 	public String index() {
@@ -48,10 +43,7 @@ public class ArticleController extends BaseController {
 	}
 
 	/**
-	 *@deprecated  获取json数据集
-	 * @author 贤云
-	 * @qq 799078779
-	 * @return
+	 * 获取json数据集
 	 */
 	@RequestMapping(value = { "/list" })
 	@ResponseBody
@@ -72,11 +64,7 @@ public class ArticleController extends BaseController {
 	}
 
 	/**
-	 *@deprecated  新增页面初始化
-	 * @author 贤云
-	 * @qq 799078779
-	 * @param map
-	 * @return
+	 * 新增页面初始化
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String add(ModelMap map) {
@@ -86,12 +74,7 @@ public class ArticleController extends BaseController {
 	}
 
 	/**
-	 *@deprecated  编辑页面初始化
-	 * @author 贤云
-	 * @qq 799078779
-	 * @param id
-	 * @param map
-	 * @return
+	 * 编辑页面初始化
 	 */
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
 	public String edit(@PathVariable Integer id,ModelMap map) {
@@ -103,11 +86,7 @@ public class ArticleController extends BaseController {
 	}
 
 	/**
-	 *@deprecated  新增或者编辑文章保存
-	 * @author 贤云
-	 * @qq 799078779
-	 * @param map
-	 * @return
+	 * 新增或者编辑文章保存
 	 */
 	@RequestMapping(value= {"/edit"} ,method = RequestMethod.POST)
 	@ResponseBody

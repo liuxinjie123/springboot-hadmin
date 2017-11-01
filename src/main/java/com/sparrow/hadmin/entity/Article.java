@@ -2,31 +2,23 @@ package com.sparrow.hadmin.entity;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.sparrow.hadmin.entity.support.BaseEntity;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
 import java.util.Date;
 
 /**
- * <p>
  * 文章表
- * </p>
- *
- * @author 贤云
- * @since 2016-12-28
  */
 @Entity
 @Table(name = "tb_article")
-public class Article extends BaseEntity{
-
-	/**
-	 *
-	 */
+@Data
+@NoArgsConstructor
+public class Article extends BaseEntity {
 	private static final long serialVersionUID = -1894163644285296223L;
 
-	/**
-	 *id
-	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", nullable = false)
@@ -55,7 +47,6 @@ public class Article extends BaseEntity{
 	 * 文章描述
 	 */
 	private String description;
-
 	/**
 	 * 文章备注
 	 */
@@ -78,70 +69,6 @@ public class Article extends BaseEntity{
 	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
 	private Date updateTime;
 
-	public String getRemark() {
-		return remark;
-	}
-
-	public void setRemark(String remark) {
-		this.remark = remark;
-	}
-
-	public ArticleSort getArticleSort() {
-		return articleSort;
-	}
-
-	public void setArticleSort(ArticleSort articleSort) {
-		this.articleSort = articleSort;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public Integer getStatus() {
-		return status;
-	}
-
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
-
-	public Date getCreateTime() {
-		return createTime;
-	}
-
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
-
-	public Date getUpdateTime() {
-		return updateTime;
-	}
-
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
-
 	public String getSortName() {
 		if(null!=articleSort&&!StringUtils.isEmpty(articleSort.getTitle())){
 			return articleSort.getTitle();
@@ -149,31 +76,4 @@ public class Article extends BaseEntity{
 		return "";
 	}
 
-	public void setSortName(String sortName) {
-		this.sortName = sortName;
-	}
-
-	public String getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(String author) {
-		this.author = author;
-	}
-
-	public String getLabel() {
-		return label;
-	}
-
-	public void setLabel(String label) {
-		this.label = label;
-	}
-
-	public String getPic() {
-		return pic;
-	}
-
-	public void setPic(String pic) {
-		this.pic = pic;
-	}
 }

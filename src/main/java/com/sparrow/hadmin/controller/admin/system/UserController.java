@@ -23,9 +23,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- *@deprecated  用户管理
- *@author 贤云
- *
+ * 用户管理
  **/
 @Controller
 @RequestMapping("/admin/user")
@@ -38,7 +36,6 @@ public class UserController extends BaseController {
 
 	/**
 	 * 用户管理初始化页面
-	 * @return
 	 */
 	@RequestMapping(value = { "/", "/index" })
 	public String index() {
@@ -47,7 +44,6 @@ public class UserController extends BaseController {
 
 	/**
 	 * 查询集合
-	 * @return
 	 */
 	@RequestMapping(value = { "/list" })
 	@ResponseBody
